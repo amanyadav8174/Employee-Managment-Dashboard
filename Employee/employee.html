@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="employee.css" />
+    <title>Employee Management - AdminHub</title>
+  </head>
+  <body>
+    <section id="sidebar">
+      <a href="#" class="brand">
+        <i class="bx bxs-smile"></i>
+        <span class="text">AdminHub</span>
+      </a>
+      <ul class="side-menu top">
+        <li>
+          <a href="../index.html">
+            <i class="bx bxs-dashboard"></i>
+            <span class="text">Dashboard</span>
+          </a>
+        </li>
+        <li class="active">
+          <a href="employee.html">
+            <i class="bx bxs-shopping-bag-alt"></i>
+            <span class="text">Employees</span>
+          </a>
+        </li>
+        <li>
+          <!-- <a href="../contact/contact.html">
+                <i class='bx bxs-doughnut-chart'></i>
+                <span class="text">Contact Us</span>
+            </a> -->
+          <a href="../contact/conact.html">
+            <i class="bx bxs-doughnut-chart"></i>
+            <span class="text">Contact US </span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="bx bxs-message-dots"></i>
+            <span class="text">Message</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="bx bxs-group"></i>
+            <span class="text">Team</span>
+          </a>
+        </li>
+      </ul>
+      <ul class="side-menu">
+        <li>
+          <a href="#">
+            <i class="bx bxs-cog"></i>
+            <span class="text">Settings</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="logout">
+            <i class="bx bxs-log-out-circle"></i>
+            <span class="text">Logout</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <section id="content">
+      <nav>
+        <i class="bx bx-menu"></i>
+        <a href="#" class="nav-link">Categories</a>
+        <form action="#">
+          <div class="form-input">
+            <input type="search" placeholder="Search..." />
+            <button type="submit" class="search-btn">
+              <i class="bx bx-search"></i>
+            </button>
+          </div>
+        </form>
+        <a href="#" class="notification">
+          <i class="bx bxs-bell"></i>
+          <span class="num" id="notificationCount">0</span>
+        </a>
+      </nav>
+
+      <main>
+        <div class="head-title">
+          <div class="left">
+            <h1>Employee Management</h1>
+            <ul class="breadcrumb">
+              <li><a href="home.html">Dashboard</a></li>
+              <li><i class="bx bx-chevron-right"></i></li>
+              <li><a class="active" href="employee.html">Employees</a></li>
+            </ul>
+          </div>
+          <a href="#" class="btn-add" onclick="openAddForm()">Add Employee</a>
+        </div>
+
+        <!-- Employee Management Table -->
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Salary</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="employeeTable">
+            <!-- Dynamic Employee Rows -->
+          </tbody>
+        </table>
+
+        <div id="paginationControls">
+          <button onclick="changePage('prev')">Previous</button>
+          <span id="pageNumber">Page 1</span>
+          <button onclick="changePage('next')">Next</button>
+          <span id="totalPages">of X</span>
+        </div>
+
+        <!-- Add Employee Modal -->
+        <div id="addEmployeeForm" class="edit-form">
+          <div class="modal-content">
+            <h2>Add Employee</h2>
+            <input type="text" id="empID" placeholder="Employee ID" required />
+            <input
+              type="text"
+              id="empName"
+              placeholder="Employee Name"
+              required
+            />
+            <input type="email" id="empEmail" placeholder="Email" required />
+            <input type="text" id="empSalary" placeholder="Salary" required />
+            <button onclick="addEmployee()">Add</button>
+            <button onclick="closeAddForm()">Cancel</button>
+          </div>
+        </div>
+
+        <!-- Edit Employee Form (hidden initially) -->
+        <div id="editEmployeeForm" class="form-container" style="display: none">
+          <h2>Edit Employee</h2>
+          <form id="editEmployee" onsubmit="saveEmployee(); return false;">
+            <label for="editEmpID">Employee ID:</label>
+            <input type="text" id="editEmpID" readonly /><br />
+
+            <label for="editEmpName">Employee Name:</label>
+            <input type="text" id="editEmpName" /><br />
+
+            <label for="editEmpEmail">Employee Email:</label>
+            <input type="email" id="editEmpEmail" /><br />
+
+            <label for="editEmpSalary">Employee Salary:</label>
+            <input type="text" id="editEmpSalary" /><br />
+
+            <button type="submit" onclick="saveChanges()">Save Changes</button>
+            <button type="button" onclick="closeEditForm()">Cancel</button>
+          </form>
+        </div>
+      </main>
+    </section>
+
+    <script src="employee.js"></script>
+  </body>
+</html>
